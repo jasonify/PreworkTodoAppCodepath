@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             todoItems = new ArrayList<String>(FileUtils.readLines(file));
         } catch (IOException e) {
-
+            Log.d("io exception", e.getLocalizedMessage());
+            todoItems = new ArrayList<String>();
         }
     }
 
@@ -68,11 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void populateArrayItems() {
-        todoItems = new ArrayList<String>();
-        todoItems.add("Item 1");
-        todoItems.add("Item 2 ");
-        todoItems.add("Item 3");
-
+        readItems();
         aTodoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, todoItems);
     }
 
