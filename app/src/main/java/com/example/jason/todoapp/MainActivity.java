@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static android.media.CamcorderProfile.get;
+
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> todoItems;
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("item position", Integer.toString(position));
                 Intent i = new Intent(MainActivity.this, EditItemActivity.class);
+                i.putExtra("index",  position);
+                i.putExtra("bodyText", todoItems.get(position));
                 startActivity(i);
             }
         });
