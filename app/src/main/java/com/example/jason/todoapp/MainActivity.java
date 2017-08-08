@@ -1,5 +1,6 @@
 package com.example.jason.todoapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         etEditText = (EditText) findViewById(R.id.etEditText);
 
 
+        /*
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -42,7 +44,27 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        */
 
+
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("item position", Integer.toString(position));
+                Intent i = new Intent(MainActivity.this, EditItemActivity.class);
+                startActivity(i);
+            }
+        });
+
+             /*
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }); */
 
     }
 
