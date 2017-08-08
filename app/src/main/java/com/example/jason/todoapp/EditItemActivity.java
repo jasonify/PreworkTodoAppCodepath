@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class EditItemActivity extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class EditItemActivity extends AppCompatActivity {
         }); */
 
         Button saveButton = (Button) findViewById(R.id.buttonSave);
+        EditText editText = (EditText) findViewById(R.id.editText4);
+        editText.setText("hello world ");
 
         final EditItemActivity self = this;
 
