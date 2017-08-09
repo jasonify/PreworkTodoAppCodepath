@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> aTodoAdapter;
     ListView lvItems;
     EditText etEditText;
+
+    private final int REQUEST_CODE = 20;
 
 
     @Override
@@ -71,6 +74,17 @@ public class MainActivity extends AppCompatActivity {
         }); */
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        if (resultCode == RESULT_OK ) {
+
+        }
+    }
+
+
 
     private void readItems() {
         File filesDir = getFilesDir();

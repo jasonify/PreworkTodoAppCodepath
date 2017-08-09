@@ -16,6 +16,10 @@ import static android.R.attr.data;
 
 public class EditItemActivity extends AppCompatActivity {
 
+
+    private final int REQUEST_CODE = 20;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,33 +37,46 @@ public class EditItemActivity extends AppCompatActivity {
             }
         }); */
 
+
+        //@Override
+        // protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        Log.d("tag me " , "something here");
+
+        // if (resultCode == RESULT_OK ) {
+        // Extract name value from result extras
+        String name = getIntent().getExtras().getString("bodyText");
+
+        final int position = getIntent().getExtras().getInt("index", 0);
+        // Toast the name to display temporarily on screen
+        // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
+
         Button saveButton = (Button) findViewById(R.id.buttonSave);
-        EditText editText = (EditText) findViewById(R.id.editText4);
-        editText.setText("hello world ");
+        final EditText editText = (EditText) findViewById(R.id.editText4);
+        editText.setText(name);
+
 
         final EditItemActivity self = this;
 
         saveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        Intent data = new Intent();
+                        // Pass relevant data back as a result
+                        data.putExtra("bodyText",   editText.getText() );
+                        data.putExtra("index", position); // ints work too
+                        // Activity finished ok, return the data
+                        setResult(RESULT_OK, data);
+
+
                         self.finish();
                     }
         });
 
 
-        //@Override
-   // protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // REQUEST_CODE is defined above
-        Log.d("tag me " , "something here");
 
-       // if (resultCode == RESULT_OK ) {
-            // Extract name value from result extras
-            String name = getIntent().getExtras().getString("bodyText");
-            editText.setText(name);
-
-            int code = getIntent().getExtras().getInt("index", 0);
-            // Toast the name to display temporarily on screen
-            // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
     }
 
