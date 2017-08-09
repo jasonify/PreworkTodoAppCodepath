@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static android.R.attr.data;
 import static android.media.CamcorderProfile.get;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,11 +80,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // REQUEST_CODE is defined above
-        if (resultCode == RESULT_OK ) {
+        if (resultCode == RESULT_OK  ) {
+            Log.d("tag me " , "got here... here");
 
+            // Extract name value from result extras
+             String name = data.getExtras().getString("bodyText");
+             int index = data.getExtras().getInt("index", 0);
+
+             // Toast the name to display temporarily on screen
+            todoItems.set(index, name);
+            writeItems();
         }
     }
-
 
 
     private void readItems() {
@@ -120,4 +128,7 @@ public class MainActivity extends AppCompatActivity {
        // Log.d("tag me " , "something here");
         writeItems();
     }
+
+
+
 }

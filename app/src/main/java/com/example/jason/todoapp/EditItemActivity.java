@@ -41,7 +41,6 @@ public class EditItemActivity extends AppCompatActivity {
         //@Override
         // protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // REQUEST_CODE is defined above
-        Log.d("tag me " , "something here");
 
         // if (resultCode == RESULT_OK ) {
         // Extract name value from result extras
