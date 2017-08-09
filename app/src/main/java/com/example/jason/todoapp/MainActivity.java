@@ -80,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // REQUEST_CODE is defined above
+
+        Log.d("tag me " , "got here... here");
+
         if (resultCode == RESULT_OK  ) {
-            Log.d("tag me " , "got here... here");
 
             // Extract name value from result extras
              String name = data.getExtras().getString("bodyText");

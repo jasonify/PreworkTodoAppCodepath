@@ -69,7 +69,7 @@ public class EditItemActivity extends AppCompatActivity {
                         // Activity finished ok, return the data
                         setResult(RESULT_OK, data);
 
-
+                        self.setResult(RESULT_OK, data);
                         self.finish();
                     }
         });
