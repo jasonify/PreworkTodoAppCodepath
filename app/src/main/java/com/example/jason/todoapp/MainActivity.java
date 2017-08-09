@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("tag me " , "got here... here");
 
-        if (resultCode == RESULT_OK  ) {
+        if (resultCode == RESULT_OK  && requestCode == REQUEST_CODE) {
 
             // Extract name value from result extras
              String name = data.getExtras().getString("bodyText");
