@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         etEditText = (EditText) findViewById(R.id.etEditText);
 
 
-        /*
+
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        */
+
 
 
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
              // Toast the name to display temporarily on screen
             todoItems.set(index, name);
+            aTodoAdapter.notifyDataSetChanged();
             writeItems();
         }
     }
