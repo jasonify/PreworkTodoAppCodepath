@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, EditItemActivity.class);
                 i.putExtra("index",  position);
                 i.putExtra("bodyText", todoItems.get(position));
-                startActivity(i);
+                // startActivity(i);
+                startActivityForResult(i, REQUEST_CODE);
+
             }
         });
 

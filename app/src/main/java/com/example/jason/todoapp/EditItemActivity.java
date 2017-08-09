@@ -64,7 +64,7 @@ public class EditItemActivity extends AppCompatActivity {
 
                         Intent data = new Intent();
                         // Pass relevant data back as a result
-                        data.putExtra("bodyText",   editText.getText() );
+                        data.putExtra("bodyText",   editText.getText().toString() );
                         data.putExtra("index", position); // ints work too
                         // Activity finished ok, return the data
                         setResult(RESULT_OK, data);
