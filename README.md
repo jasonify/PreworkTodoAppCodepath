@@ -1,6 +1,6 @@
-# Pre-work - *Name of App Here*
+# Pre-work - TODO App
 
-**Name of your app** is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
+TODO App  is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
 
 Submitted by: Jason Bautista 
 
@@ -32,6 +32,10 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 GIF walkthrough  [here ](http://imgur.com/a/vdwbP).
+
+
+<img src='https://raw.githubusercontent.com/jasonify/PreworkTodoAppCodepath/master/android-prework-2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
