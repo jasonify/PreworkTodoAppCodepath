@@ -22,8 +22,8 @@ import static android.media.CamcorderProfile.get;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> todoItems;
-    ArrayAdapter<String> aTodoAdapter;
+    ArrayList<Task> todoItems;
+    TaskAdapter aTodoAdapter;
     ListView lvItems;
     EditText etEditText;
 
@@ -52,70 +52,51 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("item position", Integer.toString(position));
                 Intent i = new Intent(MainActivity.this, EditItemActivity.class);
-                i.putExtra("index",  position);
-                i.putExtra("bodyText", todoItems.get(position));
-                // startActivity(i);
-                startActivityForResult(i, REQUEST_CODE);
+                i.putExtra("position",  position);
+                i.putExtra("bodyText", todoItems.get(position).title);
+                i.putExtra("tags", todoItems.get(position).tags);
 
+                startActivityForResult(i, REQUEST_CODE);
             }
         });
-
-             /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
-
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // REQUEST_CODE is defined above
-
-        Log.d("tag me " , "got here... here");
-
         if (resultCode == RESULT_OK  && requestCode == REQUEST_CODE) {
-
             // Extract name value from result extras
-             String name = data.getExtras().getString("bodyText");
-             int index = data.getExtras().getInt("index", 0);
-
+             String bodyText = data.getExtras().getString("bodyText");
+            String tags = data.getExtras().getString("tags");
+             int index = data.getExtras().getInt("position", 0);
              // Toast the name to display temporarily on screen
-            todoItems.set(index, name);
+            todoItems.set(index, new Task(bodyText, tags));
             aTodoAdapter.notifyDataSetChanged();
             writeItems();
         }
     }
 
-
     private void readItems() {
         File filesDir = getFilesDir();
         File file = new File(filesDir, "todo.txt");
         try {
-            todoItems = new ArrayList<String>(FileUtils.readLines(file));
+            todoItems =   Task.getTasks(FileUtils.readLines(file));  // new ArrayList<String>(FileUtils.readLines(file));
         } catch (IOException e) {
             Log.d("io exception", e.getLocalizedMessage());
-            todoItems = new ArrayList<String>();
+            todoItems = new ArrayList<Task>();
         }
     }
-
 
     private void writeItems() {
         File filesDir = getFilesDir();
         File file = new File(filesDir, "todo.txt");
         try {
-            FileUtils.writeLines(file, todoItems);
+            FileUtils.writeLines(file, Task.getStringTasks(todoItems));
         } catch (IOException e) {
 
         }
@@ -123,14 +104,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void populateArrayItems() {
         readItems();
-        aTodoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, todoItems);
+//        Task task = new Task( );
+        aTodoAdapter = new TaskAdapter(this, todoItems);
     }
 
     public void onAddItem(View view) {
         System.out.println("hello item!");
-        aTodoAdapter.add(etEditText.getText().toString());
+        aTodoAdapter.add(new Task( etEditText.getText().toString() , "#some #tags #again" ));
         etEditText.setText("");
-       // Log.d("tag me " , "something here");
         writeItems();
     }
 

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import static android.R.attr.data;
+import static android.R.attr.name;
 
 public class EditItemActivity extends AppCompatActivity {
 
@@ -24,36 +25,19 @@ public class EditItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
+        String bodyText = getIntent().getExtras().getString("bodyText");
+        String tags = getIntent().getExtras().getString("tags");
 
-
-        //@Override
-        // protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // REQUEST_CODE is defined above
-
-        // if (resultCode == RESULT_OK ) {
-        // Extract name value from result extras
-        String name = getIntent().getExtras().getString("bodyText");
-
-        final int position = getIntent().getExtras().getInt("index", 0);
-        // Toast the name to display temporarily on screen
-        // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-
-
+        final int position = getIntent().getExtras().getInt("position", 0);
         Button saveButton = (Button) findViewById(R.id.buttonSave);
-        final EditText editText = (EditText) findViewById(R.id.editText4);
-        editText.setText(name);
+        final EditText editText = (EditText) findViewById(R.id.editBodyText);
+        final EditText tagText = (EditText) findViewById(R.id.tagText);
+
+        editText.setText(bodyText);
+        tagText.setText(tags);
 
 
         final EditItemActivity self = this;
@@ -65,7 +49,10 @@ public class EditItemActivity extends AppCompatActivity {
                         Intent data = new Intent();
                         // Pass relevant data back as a result
                         data.putExtra("bodyText",   editText.getText().toString() );
-                        data.putExtra("index", position); // ints work too
+                        data.putExtra("tags",   tagText.getText().toString() );
+
+
+                        data.putExtra("position", position); // ints work too
                         // Activity finished ok, return the data
                         setResult(RESULT_OK, data);
 
@@ -73,10 +60,6 @@ public class EditItemActivity extends AppCompatActivity {
                         self.finish();
                     }
         });
-
-
-
-
     }
 
 
